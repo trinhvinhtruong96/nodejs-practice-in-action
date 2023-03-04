@@ -4,6 +4,7 @@ var path = require('path');
 var mime = require('mime');
 var cache = {};
 
+// Sever normal serve
 var server = http.createServer(function (request, response) {
   var filePath = false;
   if (request.url == '/') {
@@ -19,6 +20,9 @@ server.listen(3000, function () {
   console.log("Server listening on port 3000.");
 });
 
+// Streaming serve
+var chatServer = require('./lib/chat_server');
+chatServer.listen(server);
 
 function send404(response) {
   response.writeHead(404, { 'Content-Type': 'text/plain' });
@@ -29,7 +33,7 @@ function send404(response) {
 function sendFile(response, filePath, fileContents) {
   response.writeHead(
     200,
-    { "content-type": mime.lookup(path.basename(filePath)) }
+    { "content-type": mime.getType(path.basename(filePath)) }
   );
   response.end(fileContents);
 }
