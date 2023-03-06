@@ -1,11 +1,18 @@
-var http = require('http')
+var http = require('http');
+var url = require('url');
+var items = [];
 var server = http.createServer(function (req, res) {
-  req.setEncoding('utf8')
-  req.on('data', function (chunk) {
-    console.log('parsed', chunk);
-  });
-  req.on('end', function () {
-    console.log('done parsing');
-    res.end()
-  });
+  switch (req.method) {
+    case 'POST':
+      var item = '';
+      req.setEncoding('utf8');
+      req.on('data', function (chunk) {
+        item += chunk;
+      });
+      req.on('end', function () {
+        items.push(item);
+        res.end('OK\n');
+      });
+      break;
+  }
 });
