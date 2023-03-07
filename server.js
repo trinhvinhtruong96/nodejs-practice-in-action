@@ -15,3 +15,11 @@ var server = http.createServer(function (req, res) {
   });
 });
 server.listen(3000);
+
+// pipe
+var server = http.createServer(function (req, res) {
+  var url = parse(req.url);
+  var path = join(root, url.pathname);
+  var stream = fs.createReadStream(path);
+  stream.pipe(res);
+});
