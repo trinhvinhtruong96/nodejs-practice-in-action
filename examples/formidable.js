@@ -41,7 +41,12 @@ function upload(req, res) {
   form.on('end', function () {
     res.end('upload complete!');
   });
-  form.parse(req);
+  //form.parse(req);
+  form.parse(req, function (err, fields, files) {
+    console.log(fields);
+    console.log(files);
+    res.end('upload complete!');
+  });
 }
 
 function isFormData(req) {
