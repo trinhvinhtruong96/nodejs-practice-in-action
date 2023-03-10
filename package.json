@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "description": "Minimalist multiroom chat server",
     "dependencies": {
+        "formidable": "^2.1.1",
         "htmlparser": "^1.7.7",
         "mime": "^3.0.0",
         "request": "^2.88.2",
