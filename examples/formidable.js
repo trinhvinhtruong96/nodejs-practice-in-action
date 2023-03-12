@@ -41,6 +41,10 @@ function upload(req, res) {
   form.on('end', function () {
     res.end('upload complete!');
   });
+  form.on('progress', function (bytesReceived, bytesExpected) {
+    var percent = Math.floor(bytesReceived / bytesExpected * 100);
+    console.log(percent);
+  });
   //form.parse(req);
   form.parse(req, function (err, fields, files) {
     console.log(fields);
