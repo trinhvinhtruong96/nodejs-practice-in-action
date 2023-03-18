@@ -1,3 +1,4 @@
+// logging
 function setup(format) {
   var regexp = /:(\w+)/g;
   return function logger(req, res, next) {
@@ -10,4 +11,4 @@ function setup(format) {
 }
 module.exports = setup;
 
-app.use(setup({some: 'options'}))
+app.use(setup({ some: 'options' }))
